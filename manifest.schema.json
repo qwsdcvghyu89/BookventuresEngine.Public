@@ -1,0 +1,172 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "PluginContext",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "Guid": {
+      "type": "string",
+      "format": "guid"
+    },
+    "Name": {
+      "type": "string"
+    },
+    "Author": {
+      "type": "string"
+    },
+    "OtherContributers": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "Description": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "Version": {
+      "$ref": "#/definitions/SemVersion"
+    },
+    "Dependencies": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "guid"
+      }
+    },
+    "Assemblies": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "PreferredLoadOrder": {
+      "type": "integer",
+      "format": "int64"
+    },
+    "PreloadAllAssemblies": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "ExportedTypesProviders": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/TypeProvider"
+      }
+    }
+  },
+  "definitions": {
+    "SemVersion": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "Major": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "Minor": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "Patch": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "Prerelease": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "PrereleaseIdentifiers": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/PrereleaseIdentifier"
+          }
+        },
+        "PrereleaseIsZero": {
+          "type": "boolean"
+        },
+        "IsPrerelease": {
+          "type": "boolean"
+        },
+        "IsRelease": {
+          "type": "boolean"
+        },
+        "Build": {
+          "type": [
+            "null",
+            "string"
+          ],
+          "x-deprecated": true,
+          "x-deprecatedMessage": "This property is obsolete. Use Metadata instead."
+        },
+        "Metadata": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "MetadataIdentifiers": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/MetadataIdentifier"
+          }
+        }
+      }
+    },
+    "PrereleaseIdentifier": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "Value": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "NumericValue": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "format": "int32"
+        }
+      }
+    },
+    "MetadataIdentifier": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "Value": {
+          "type": [
+            "null",
+            "string"
+          ]
+        }
+      }
+    },
+    "TypeProvider": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "Assembly": {
+          "type": "string"
+        },
+        "Type": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
